@@ -65,6 +65,8 @@ class TSegmentedView: UIView {
     fileprivate var backgroundView: UIView!
     fileprivate var headerView: UIView!
     fileprivate var viewArray = [UIScrollView]()
+    // segmentedControlView 的类型在swift3中无法设置为 UIView & TSegmentedControlProtocol
+    // swift4 中改变为 UIView & TSegmentedControlProtocol 类型
     fileprivate var segmentedControlView: UIView?
     fileprivate var segmentedControlView_P: TSegmentedControlProtocol? {
         get {

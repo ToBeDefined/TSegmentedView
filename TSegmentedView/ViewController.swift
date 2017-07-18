@@ -10,8 +10,14 @@ import UIKit
 import Masonry
 
 class ViewController: UIViewController {
+    enum HeaderViewType {
+        case topFixed
+        case centerFixed
+        case bottomFixed
+    }
     var sview: TSegmentedView!
     var refreshCount: Int = 0
+    var headerViewType: HeaderViewType = .centerFixed
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -20,7 +26,10 @@ class ViewController: UIViewController {
         sview = TSegmentedView()
         self.view.addSubview(sview)
         sview.mas_makeConstraints { (make) in
-            make!.edges.equalTo()(self.view)!.insets()(UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0))
+            make!.edges.equalTo()(self.view)!.insets()(UIEdgeInsets.init(top: 64,
+                                                                         left: 0,
+                                                                         bottom: 0,
+                                                                         right: 0))
         }
         sview.delegate = self
         sview.reloadData()
@@ -57,7 +66,7 @@ extension ViewController: TSegmentedViewDelegate {
         case 1:
             return self.createScrollView()
         default:
-            return self.createTBView()
+            return self.createTableView()
         }
     }
     
@@ -71,36 +80,59 @@ extension ViewController: TSegmentedViewDelegate {
     }
     
     func segmentedViewHeaderMaxHeight(in segmentedView: TSegmentedView) -> CGFloat {
-        return 100
+        return 150
     }
     
     func segmentedViewHeaderMinHeight(in segmentedView: TSegmentedView) -> CGFloat {
-        return 20
+        return 60
     }
     
     
     func segmentedViewHeaderView(in segmentedView: TSegmentedView) -> UIView {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 350, height: 100))
-        let label = UILabel()
+        let maxHeight = self.segmentedViewHeaderMaxHeight(in: sview)
+        let minHeight = self.segmentedViewHeaderMinHeight(in: sview)
+        let view = UIView.init(frame: CGRect.init(x: 0,
+                                                  y: 0,
+                                                  width: 350,
+                                                  height: maxHeight))
+        view.backgroundColor = UIColor.black
+        view.layer.masksToBounds = true
+        
+        let label  = UILabel()
         view.addSubview(label)
-        label.mas_makeConstraints { (make) in
-            make!.centerX.equalTo()(view.mas_centerX)
-            make!.centerY.equalTo()(view.mas_centerY)
-            make!.height.mas_equalTo()(20)
-            make!.width.mas_equalTo()(300)
-            //            make!.bottom.equalTo()(view.mas_bottom)!.offset()(-20)
-            
-        }
-        label.text = "这是segmentedViewHeaderView"
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.backgroundColor = UIColor.brown
+        label.text = "黑色的是segmentedViewHeaderView\n这是内部的label"
+        
+        label.mas_makeConstraints { (make) in
+            
+            switch self.headerViewType {
+            case .topFixed:
+                make!.top.equalTo()(view.mas_top)
+            case .centerFixed:
+                make!.centerY.equalTo()(view.mas_centerY)
+            case .bottomFixed:
+                make!.bottom.equalTo()(view.mas_bottom)
+            }
+            
+            make!.centerX.equalTo()(view.mas_centerX)
+            make!.height.mas_equalTo()(minHeight)
+            make!.width.mas_equalTo()(300)
+        }
         
         return view
     }
-    
+}
+
+// MARK: Create View
+extension ViewController {
     func createView() -> UIView {
         let view = UIView()
-        let label = UILabel.init(frame: CGRect.init(x: 100, y: 100, width: 200, height: 100))
+        let label = UILabel.init(frame: CGRect.init(x: 100,
+                                                    y: 100,
+                                                    width: 200,
+                                                    height: 100))
         label.text = "这个是UIView"
         label.textAlignment = .center
         label.backgroundColor = UIColor.brown
@@ -118,7 +150,10 @@ extension ViewController: TSegmentedViewDelegate {
             make!.height.mas_equalTo()(900)
             make!.width.mas_equalTo()(UIScreen.main.bounds.width)
         }
-        let label = UILabel.init(frame: CGRect.init(x: 100, y: 100, width: 200, height: 100))
+        let label = UILabel.init(frame: CGRect.init(x: 100,
+                                                    y: 100,
+                                                    width: 200,
+                                                    height: 100))
         label.text = "这个是UIScrollView"
         label.textAlignment = .center
         label.backgroundColor = UIColor.brown
@@ -126,9 +161,12 @@ extension ViewController: TSegmentedViewDelegate {
         return scView
     }
     
-    func createTBView() -> UITableView {
+    func createTableView() -> UITableView {
         let tbView = UITableView()
-        let hv = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
+        let hv = UIView.init(frame: CGRect.init(x: 0,
+                                                y: 0,
+                                                width: UIScreen.main.bounds.width,
+                                                height: 120))
         hv.backgroundColor = UIColor.brown
         let label = UILabel()
         label.text = "这个是UITableView"
@@ -165,7 +203,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "1") ?? UITableViewCell.init(style: .default, reuseIdentifier: "1")
+        var cell: UITableViewCell!
+        cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+        }
         cell.textLabel?.text = "\(indexPath.section) - \(indexPath.row)"
         return cell
     }
@@ -175,7 +217,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 30))
+        let label = UILabel.init(frame: CGRect.init(x: 0,
+                                                    y: 0,
+                                                    width: 100,
+                                                    height: 30))
         label.text = "  第\(section)组"
         label.backgroundColor = UIColor.gray
         return label

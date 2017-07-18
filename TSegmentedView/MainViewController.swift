@@ -8,33 +8,50 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        tableView.reloadData()
+    }
+}
+
+// MARK: Delegate & DataSource
+extension MainViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
-    @IBAction func push(_ sender: UIButton) {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "顶部View上方固定"
+        case 1:
+            cell.textLabel?.text = "顶部View居中"
+        default:
+            cell.textLabel?.text = "顶部View一同移动"
+        }
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ViewController()
+        switch indexPath.row {
+        case 0:
+            vc.headerViewType = .topFixed
+        case 1:
+            vc.headerViewType = .centerFixed
+        default:
+            vc.headerViewType = .bottomFixed
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
+
 
