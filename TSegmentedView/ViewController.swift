@@ -95,7 +95,7 @@ extension ViewController: TSegmentedViewDelegate {
                                                   y: 0,
                                                   width: 350,
                                                   height: maxHeight))
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.gray
         view.layer.masksToBounds = true
         
         let label  = UILabel()
@@ -103,7 +103,7 @@ extension ViewController: TSegmentedViewDelegate {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.backgroundColor = UIColor.brown
-        label.text = "黑色的是segmentedViewHeaderView\n这是内部的label"
+        label.text = "灰色的是segmentedViewHeaderView\n这是内部的label"
         
         label.mas_makeConstraints { (make) in
             

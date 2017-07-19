@@ -3,6 +3,10 @@ TSegmentedView
 ------
 [English Document](README.md)
 
+<video width="346" height="634" src="images/demo.mov" controls="controls">
+your browser does not support the video tag
+</video>
+
 ### 特点
 
 - 完美兼容`Objective-C`和`swift`
@@ -30,6 +34,8 @@ TSegmentedView
 ### 为什么做这个
 
 现在很多类似的框架，但是还是做了一个，主要是因为网上大多数框架写死了`SegmentedControlView`(就是tab的样式)，另外最重要的一点是我试验过很多框架发现`UITableView`的`tableHeaderView`会有问题，而且一旦设置section header view，悬停都有问题，所以我就自己写了一个……
+
+> 不足：使用了`Masonry`，之后我会修改删掉引用。
 
 ### 如何使用
 

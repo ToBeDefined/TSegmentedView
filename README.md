@@ -4,6 +4,11 @@ TSegmentedView
 
 [中文文档](README_CN.md)
 
+
+<video width="346" height="634" src="images/demo.mov" controls="controls">
+your browser does not support the video tag
+</video>
+
 ### Features
 
 - perfectly compatible with `Objective-C` and` swift`
@@ -30,6 +35,8 @@ TSegmentedView
 
 ### Why wrote `TSegmentedView`
 Now a lot of similar framework, but still do one, mainly because most of the framework of the Internet to write the `SegmentedControlView` (that is, tab style), the other important point is that I have tried a lot of frames found` UITableView` `tableHeaderView `There will be problems, and once the section header view, hover has a problem, so I wrote this ...
+
+> insufficient：used `Masonry`，I will change it in next step.
 
 ### How to use
 

@@ -44,10 +44,13 @@ extension MainViewController {
         switch indexPath.row {
         case 0:
             vc.headerViewType = .topFixed
+            vc.title = "顶部View上方固定"
         case 1:
             vc.headerViewType = .centerFixed
+            vc.title = "顶部View居中"
         default:
             vc.headerViewType = .bottomFixed
+            vc.title = "顶部View一同移动"
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
