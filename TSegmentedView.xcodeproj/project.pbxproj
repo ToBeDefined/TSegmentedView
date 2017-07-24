@@ -14,7 +14,7 @@
 		D7BEF5B61F1DF911007CB419 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B41F1DF911007CB419 /* MainViewController.swift */; };
 		D7BEF5B91F1DFB58007CB419 /* TSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */; };
 		D7BEF5BA1F1DFB58007CB419 /* TSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */; };
-		D7BEF5BC1F1DFBCA007CB419 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5BB1F1DFBCA007CB419 /* Extension.swift */; };
+		D7BEF5BC1F1DFBCA007CB419 /* TSVExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedView.swift; sourceTree = "<group>"; };
 		D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedControlView.swift; sourceTree = "<group>"; };
 		D7BEF5B41F1DF911007CB419 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		D7BEF5BB1F1DFBCA007CB419 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSVExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 		D7BEF5B81F1DF918007CB419 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D7BEF5BB1F1DFBCA007CB419 /* Extension.swift */,
+				D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */,
 				D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */,
 				D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */,
 			);
@@ -162,7 +162,7 @@
 				D7BEF5B91F1DFB58007CB419 /* TSegmentedView.swift in Sources */,
 				D7BEF5BA1F1DFB58007CB419 /* TSegmentedControlView.swift in Sources */,
 				D7BEF5B61F1DF911007CB419 /* MainViewController.swift in Sources */,
-				D7BEF5BC1F1DFBCA007CB419 /* Extension.swift in Sources */,
+				D7BEF5BC1F1DFBCA007CB419 /* TSVExtension.swift in Sources */,
 				D7BEF5A31F1DF84A007CB419 /* ViewController.swift in Sources */,
 				D7BEF5A11F1DF84A007CB419 /* AppDelegate.swift in Sources */,
 			);
