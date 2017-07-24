@@ -13,12 +13,11 @@ TSegmentedView
 - perfectly compatible with `Objective-C` and` swift`
 - support user scorll and click tab
 - support slide back(in any tab)
-- support `frame` and `autolayout`
+- support `Frame` and `Autolayout`, you can use `Masonry`/`SnapKit`/`NSLayoutConstraint` layout views
 - support in the ordinary `UIView` (and the non-sliding `UIView subclass View`), `UIScrollView`,` UITableView`
 - support `UITableView` add` tableHeaderView` 
 - support `UITableView` to add section header view, and show that there will be no hover position is not correct
 - support custom `SegmentedControlView` (tab click) style, you can set their own animation, set their own height and so on
-- insufficient：used `Masonry`，I will change it in next step.
 
 > support UIView
 

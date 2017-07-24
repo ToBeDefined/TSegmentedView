@@ -10,12 +10,11 @@ TSegmentedView
 - 完美兼容`Objective-C`和`swift`
 - 支持用户滑动和点击tab
 - 支持滑动返回(在任意的tab)
-- 支持`frame`和`autolayout`自动布局
+- 支持`Frame`和`Autolayout`自动布局，你可以使用`Masonry`/`SnapKit`/`NSLayoutConstraint`去布局view
 - 支持放入普通的`UIView`（以及非滑动的`UIView子类View`），`UIScrollView`，`UITableView`
 - 支持的`UITableView`添加`tableHeaderView`
 - 支持`UITableView`添加 section header view，并且显示不会出现悬停位置不正确的情况
 - 支持自定义 `SegmentedControlView` （tab点选）的样式，你可以自己设置动画、自己设置高度等等等
-- 不足：使用了`Masonry`，之后我会修改删掉依赖。
 
 > UIView支持
 
