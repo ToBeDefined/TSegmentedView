@@ -20,14 +20,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.white
-
+        
         sview = TSegmentedView()
         self.view.addSubview(sview)
-        sview.makeConstraints([.left, .bottom, .right], equalTo: self.view)
-        sview.makeConstraint(.top, equalTo: self.view, multiplier: 1.0, constant: 64)
+        sview.tsv_makeConstraints([.left, .bottom, .right], equalTo: self.view)
+        sview.tsv_makeConstraint(.top, equalTo: self.view, multiplier: 1.0, constant: 64)
         sview.delegate = self
         sview.reloadData()
-
+        
         let barItem = UIBarButtonItem.init(barButtonSystemItem: .refresh,
                                            target: self,
                                            action: #selector(self.reloadSviewData))
@@ -52,7 +52,7 @@ extension ViewController: TSegmentedViewDelegate {
             return ["第一页", "第二页", "第三页", "第\(self.refreshCount)刷"]
         }
     }
-
+    
     func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView {
         switch index {
         case 0:
@@ -63,25 +63,25 @@ extension ViewController: TSegmentedViewDelegate {
             return self.createTableView()
         }
     }
-
+    
     func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> UIView {
         let sc = TSegmentedControlView()
         return sc
     }
-
+    
     func segmentedViewFirstStartSelectIndex(in segmentedView: TSegmentedView) -> Int {
         return 1
     }
-
+    
     func segmentedViewHeaderMaxHeight(in segmentedView: TSegmentedView) -> CGFloat {
         return 150
     }
-
+    
     func segmentedViewHeaderMinHeight(in segmentedView: TSegmentedView) -> CGFloat {
         return 60
     }
-
-
+    
+    
     func segmentedViewHeaderView(in segmentedView: TSegmentedView) -> UIView {
         let maxHeight = self.segmentedViewHeaderMaxHeight(in: sview)
         let minHeight = self.segmentedViewHeaderMinHeight(in: sview)
@@ -91,7 +91,7 @@ extension ViewController: TSegmentedViewDelegate {
                                                   height: maxHeight))
         view.backgroundColor = UIColor.gray
         view.layer.masksToBounds = true
-
+        
         let label  = UILabel()
         view.addSubview(label)
         label.numberOfLines = 0
@@ -100,16 +100,16 @@ extension ViewController: TSegmentedViewDelegate {
         label.text = "灰色的是segmentedViewHeaderView\n这是内部的label"
         switch self.headerViewType {
         case .topFixed:
-            label.makeConstraint(.top, equalTo: view)
+            label.tsv_makeConstraint(.top, equalTo: view)
         case .centerFixed:
-            label.makeConstraint(.centerY, equalTo: view)
+            label.tsv_makeConstraint(.centerY, equalTo: view)
         case .bottomFixed:
-            label.makeConstraint(.bottom, equalTo: view)
+            label.tsv_makeConstraint(.bottom, equalTo: view)
         }
-        label.makeConstraint(.centerX, equalTo: view)
-        label.makeConstraint(.width, is: 300)
-        label.makeConstraint(.height, is: minHeight)
-
+        label.tsv_makeConstraint(.centerX, equalTo: view)
+        label.tsv_makeConstraint(.width, is: 300)
+        label.tsv_makeConstraint(.height, is: minHeight)
+        
         return view
     }
 }
@@ -128,15 +128,15 @@ extension ViewController {
         view.addSubview(label)
         return view
     }
-
+    
     func createScrollView() -> UIScrollView {
         let scView = UIScrollView()
         let view = UIView()
         view.backgroundColor = UIColor.blue
         scView.addSubview(view)
-        view.makeConstraints([.left, .top, .right, .bottom], equalTo: scView)
-        view.makeConstraint(.height, is: 900)
-        view.makeConstraint(.width, is: UIScreen.main.bounds.width)
+        view.tsv_makeConstraints([.left, .top, .right, .bottom], equalTo: scView)
+        view.tsv_makeConstraint(.height, is: 900)
+        view.tsv_makeConstraint(.width, is: UIScreen.main.bounds.width)
         let label = UILabel.init(frame: CGRect.init(x: 100,
                                                     y: 100,
                                                     width: 200,
@@ -147,7 +147,7 @@ extension ViewController {
         view.addSubview(label)
         return scView
     }
-
+    
     func createTableView() -> UITableView {
         let tbView = UITableView()
         let hv = UIView.init(frame: CGRect.init(x: 0,
@@ -160,32 +160,32 @@ extension ViewController {
         label.textAlignment = .center
         label.backgroundColor = UIColor.red
         hv.addSubview(label)
-        label.makeConstraints([.centerX, .centerY], equalTo: hv)
-        label.makeConstraint(.height, is: 50)
-        label.makeConstraint(.width, is: 300)
-
+        label.tsv_makeConstraints([.centerX, .centerY], equalTo: hv)
+        label.tsv_makeConstraint(.height, is: 50)
+        label.tsv_makeConstraint(.width, is: 300)
+        
         tbView.tableHeaderView = hv
         tbView.delegate = self
         tbView.dataSource = self
         tbView.reloadData()
         return tbView
     }
-
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
         cell = tableView.dequeueReusableCell(withIdentifier: "cell")
@@ -195,11 +195,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = "\(indexPath.section) - \(indexPath.row)"
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel.init(frame: CGRect.init(x: 0,
                                                     y: 0,

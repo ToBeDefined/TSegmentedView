@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc protocol TSegmentedControlProtocol: class {
+@objc public protocol TSegmentedControlProtocol: class {
     func reloadData(with titles: [String]) -> Void
     func userScrollExtent(_ extent: CGFloat) -> Void
     func setAction(_ actionBlock: ((_ index: Int) -> Void)?) -> Void
 }
 
-@objc protocol TSegmentedViewDelegate: class {
+@objc public protocol TSegmentedViewDelegate: class {
     
     func segmentedViewTitles(in segmentedView: TSegmentedView) -> [String]
     
@@ -36,7 +36,7 @@ import UIKit
     
 }
 
-class TSegmentedView: UIView {
+public class TSegmentedView: UIView {
     weak var delegate: TSegmentedViewDelegate?
     
     var currentIndex: Int {
@@ -86,7 +86,7 @@ class TSegmentedView: UIView {
         self.removeObserver(from: viewArray[_currentIndex])
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -97,7 +97,7 @@ class TSegmentedView: UIView {
         backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         self.addSubview(backgroundView)
-        backgroundView.makeConstraints([.left, .right, .top, .bottom], equalTo: self)
+        backgroundView.tsv_makeConstraints([.left, .right, .top, .bottom], equalTo: self)
         
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.clear
@@ -108,11 +108,11 @@ class TSegmentedView: UIView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(scrollView)
-        scrollView.makeConstraints([.left, .right, .top, .bottom], equalTo: self)
+        scrollView.tsv_makeConstraints([.left, .right, .top, .bottom], equalTo: self)
     }
     
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         if isFirstLayout {
             isFirstLayout = false
@@ -156,7 +156,7 @@ class TSegmentedView: UIView {
     }
     
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if /*self.scrollView.contentOffset.x <= 0 &&*/ point.x <= 20 {
             return self.backgroundView.hitTest(point, with: event)
         }
@@ -223,19 +223,19 @@ extension TSegmentedView {
         }
         
         headerView.removeConstraints(headerView.constraints)
-        headerView.makeConstraints([.left, .top, .right], equalTo: self)
-        headerViewHeightConstraint = headerView.makeConstraint(.height, is: self.headerMaxHeight)
+        headerView.tsv_makeConstraints([.left, .top, .right], equalTo: self)
+        headerViewHeightConstraint = headerView.tsv_makeConstraint(.height, is: self.headerMaxHeight)
         
         if let baseHeader = baseHeader  {
             headerView.addSubview(baseHeader)
-            baseHeader.makeConstraints([.left, .top, .right], equalTo: self.headerView)
-            baseHeader.makeConstraint(.bottom, equalTo: self.headerView, multiplier: 1.0, constant: -segmentedHeight)
+            baseHeader.tsv_makeConstraints([.left, .top, .right], equalTo: self.headerView)
+            baseHeader.tsv_makeConstraint(.bottom, equalTo: self.headerView, multiplier: 1.0, constant: -segmentedHeight)
         }
         
         if segmentedControlView != nil {
             headerView.addSubview(segmentedControlView!)
-            segmentedControlView!.makeConstraints([.left, .right, .bottom], equalTo: self.headerView)
-            segmentedControlView!.makeConstraint(.height, is: segmentedHeight)
+            segmentedControlView!.tsv_makeConstraints([.left, .right, .bottom], equalTo: self.headerView)
+            segmentedControlView!.tsv_makeConstraint(.height, is: segmentedHeight)
         }
         
         segmentedControlView_P?.setAction({ [weak self] (index) in
@@ -271,12 +271,12 @@ extension TSegmentedView {
         
         let viewHeight = view.frame.height
         subScrollView.addSubview(view)
-        view.makeConstraints([.left, .right, .top, .bottom], equalTo: subScrollView)
-        view.makeConstraint(.width, equalTo: self)
+        view.tsv_makeConstraints([.left, .right, .top, .bottom], equalTo: subScrollView)
+        view.tsv_makeConstraint(.width, equalTo: self)
         if viewHeight != 0 {
-            view.makeConstraint(.height, is: viewHeight)
+            view.tsv_makeConstraint(.height, is: viewHeight)
         } else {
-            view.makeConstraint(.height, equalTo: self)
+            view.tsv_makeConstraint(.height, equalTo: self)
         }
     }
     
@@ -305,8 +305,8 @@ extension TSegmentedView {
             let tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: viewWidth, height: viewHeight + headerMaxHeight - headerMinHeight))
             tableHeaderView.backgroundColor = UIColor.clear
             tableHeaderView.addSubview(view)
-            view.makeConstraints([.left, .right, .bottom], equalTo: tableHeaderView)
-            view.makeConstraint(.height, is: viewHeight)
+            view.tsv_makeConstraints([.left, .right, .bottom], equalTo: tableHeaderView)
+            view.tsv_makeConstraint(.height, is: viewHeight)
             tableView.tableHeaderView = tableHeaderView
         } else {
             let tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerMaxHeight - self.headerMinHeight))
@@ -320,16 +320,16 @@ extension TSegmentedView {
         self.scrollView.addSubview(view)
         self.viewArray.append(view)
         
-        view.makeConstraints([.top, .bottom], equalTo: self.scrollView)
-        view.makeConstraints([.height, .width], equalTo: self)
+        view.tsv_makeConstraints([.top, .bottom], equalTo: self.scrollView)
+        view.tsv_makeConstraints([.height, .width], equalTo: self)
         if index == 0 {
-            view.makeConstraint(.left, equalTo: self.scrollView)
+            view.tsv_makeConstraint(.left, equalTo: self.scrollView)
         } else {
-            view.makeConstraint(.left, equalTo: self.viewArray[index-1], attribute: .right)
+            view.tsv_makeConstraint(.left, equalTo: self.viewArray[index-1], attribute: .right)
         }
         
         if index == self.pageCount - 1 {
-            view.makeConstraint(.right, equalTo: self.scrollView)
+            view.tsv_makeConstraint(.right, equalTo: self.scrollView)
         }
     }
 }
@@ -347,7 +347,7 @@ extension TSegmentedView {
         scrollView.removeObserver(self, forKeyPath: "contentOffset", context: nil)
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         func changeOffsetY(dlt: CGFloat) {
             if let scrollView = object as? UIScrollView {
                 for v in self.viewArray {
@@ -374,11 +374,11 @@ extension TSegmentedView {
 // MARK: ScrollDelegate & ScrollToIndex
 extension TSegmentedView: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.isUserScroll = true
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
             if !self.isUserScroll {
                 return
@@ -395,7 +395,7 @@ extension TSegmentedView: UIScrollViewDelegate {
         }
     }
     
-    func scrollView(scrollTo index: Int, animated: Bool = true) {
+    public func scrollView(scrollTo index: Int, animated: Bool = true) {
         var width = self.frame.width
         if width == 0 {
             width = UIScreen.main.bounds.width

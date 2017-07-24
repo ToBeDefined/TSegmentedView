@@ -9,8 +9,8 @@
 
 import UIKit
 
-class TSegmentedControlView: UIView {
-    enum SeparateStyle {
+public class TSegmentedControlView: UIView {
+    public enum SeparateStyle {
         case none
         case top
         case bottom
@@ -60,7 +60,7 @@ class TSegmentedControlView: UIView {
     private var topLine: UIImageView!
     private var bottomLine: UIImageView!
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -71,20 +71,20 @@ class TSegmentedControlView: UIView {
         }
         super.init(frame: frame)
         
-        let color = UIColor.init(withRGBValue: 0xDFDFDF)
-        let colorImage = UIImage.init(color: color)
+        let color = UIColor.init(withTSVRGBValue: 0xDFDFDF)
+        let colorImage = UIImage.init(tsvcolor: color)
         
         topLine = UIImageView()
         topLine.image = colorImage
         self.addSubview(topLine)
-        topLine.makeConstraints([.left, .right, .top], equalTo: self)
-        topLine.makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
+        topLine.tsv_makeConstraints([.left, .right, .top], equalTo: self)
+        topLine.tsv_makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
         
         bottomLine = UIImageView()
         bottomLine.image = colorImage
         self.addSubview(bottomLine)
-        bottomLine.makeConstraints([.left, .bottom, .right], equalTo: self)
-        bottomLine.makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
+        bottomLine.tsv_makeConstraints([.left, .bottom, .right], equalTo: self)
+        bottomLine.tsv_makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
     }
     
     private func creatViews(with titles: [String]) {
@@ -105,12 +105,12 @@ class TSegmentedControlView: UIView {
             control.applyStyle()
             self.addSubview(control)
             if index == 0 {
-                control.makeConstraint(.left, equalTo: self)
+                control.tsv_makeConstraint(.left, equalTo: self)
             } else {
-                control.makeConstraint(.left, equalTo: self.controls[index-1], attribute: .right)
+                control.tsv_makeConstraint(.left, equalTo: self.controls[index-1], attribute: .right)
             }
-            control.makeConstraints([.top, .bottom], equalTo: self)
-            control.makeConstraint(.width, equalTo: self, multiplier: 1.0/count)
+            control.tsv_makeConstraints([.top, .bottom], equalTo: self)
+            control.tsv_makeConstraint(.width, equalTo: self, multiplier: 1.0/count)
             controls.append(control)
         }
     }
@@ -150,16 +150,16 @@ class TSegmentedControlView: UIView {
 }
 
 extension TSegmentedControlView: TSegmentedControlProtocol {
-    func setAction(_ actionBlock: ((Int) -> Void)?) {
+    public func setAction(_ actionBlock: ((Int) -> Void)?) {
         self.actionBlock = actionBlock
     }
     
-    func userScrollExtent(_ extent: CGFloat) {
+    public func userScrollExtent(_ extent: CGFloat) {
         let index = Int(extent + 0.5)
         _currentIndex = index
     }
     
-    func reloadData(with titles: [String]) {
+    public func reloadData(with titles: [String]) {
         self.titles = titles
     }
 }
@@ -194,7 +194,7 @@ class PAControl: UIControl {
     func setupViews() {
         label = UILabel()
         self.addSubview(label)
-        label.makeConstraints([.left, .top, .bottom, .right], equalTo: self)
+        label.tsv_makeConstraints([.left, .top, .bottom, .right], equalTo: self)
         label.backgroundColor = UIColor.clear
         label.textColor = self.normalColor
         label.font = self.normalFont

@@ -9,30 +9,30 @@
 import UIKit
 
 extension UIColor {
-    convenience init(R: Int, G: Int, B: Int, A: Float = 1.0) {
-        self.init(red:   CGFloat(Float(R) / 255.0),
-                  green: CGFloat(Float(G) / 255.0),
-                  blue:  CGFloat(Float(B) / 255.0),
-                  alpha: CGFloat(A))
+    convenience init(TSVR: Int, TSVG: Int, TSVB: Int, TSVA: Float = 1.0) {
+        self.init(red:   CGFloat(Float(TSVR) / 255.0),
+                  green: CGFloat(Float(TSVG) / 255.0),
+                  blue:  CGFloat(Float(TSVB) / 255.0),
+                  alpha: CGFloat(TSVA))
     }
     
-    convenience init(withRGBValue rgbValue: Int, alpha: Float = 1.0) {
+    convenience init(withTSVRGBValue rgbValue: Int, alpha: Float = 1.0) {
         let r = ((rgbValue & 0xFF0000) >> 16)
         let g = ((rgbValue & 0x00FF00) >> 8)
         let b =  (rgbValue & 0x0000FF)
-        self.init(R: r,
-                  G: g,
-                  B: b,
-                  A: alpha)
+        self.init(TSVR: r,
+                  TSVG: g,
+                  TSVB: b,
+                  TSVA: alpha)
     }
 }
 
 extension UIImage {
-    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    convenience init?(tsvcolor: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContext(rect.size)
         let context:CGContext = UIGraphicsGetCurrentContext()!
-        context.setFillColor(color.cgColor)
+        context.setFillColor(tsvcolor.cgColor)
         context.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -45,8 +45,8 @@ extension UIImage {
 
 extension UIView {
     @discardableResult
-    func makeConstraint(_ attribute: NSLayoutAttribute,
-                        is number: CGFloat) -> NSLayoutConstraint {
+    func tsv_makeConstraint(_ attribute: NSLayoutAttribute,
+                            is number: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attribute,
@@ -60,10 +60,10 @@ extension UIView {
     }
     
     @discardableResult
-    func makeConstraint(_ attribute: NSLayoutAttribute,
-                        equalTo view: UIView,
-                        multiplier: CGFloat = 1.0,
-                        constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    func tsv_makeConstraint(_ attribute: NSLayoutAttribute,
+                            equalTo view: UIView,
+                            multiplier: CGFloat = 1.0,
+                            constant: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attribute,
@@ -87,11 +87,11 @@ extension UIView {
     }
     
     @discardableResult
-    func makeConstraint(_ attr: NSLayoutAttribute,
-                        equalTo view: UIView,
-                        attribute: NSLayoutAttribute,
-                        multiplier: CGFloat = 1.0,
-                        constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    func tsv_makeConstraint(_ attr: NSLayoutAttribute,
+                            equalTo view: UIView,
+                            attribute: NSLayoutAttribute,
+                            multiplier: CGFloat = 1.0,
+                            constant: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attr,
@@ -105,16 +105,16 @@ extension UIView {
     }
     
     @discardableResult
-    func makeConstraints(_ attributes: [NSLayoutAttribute],
-                         equalTo view: UIView,
-                         multiplier: CGFloat = 1.0,
-                         constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
+    func tsv_makeConstraints(_ attributes: [NSLayoutAttribute],
+                             equalTo view: UIView,
+                             multiplier: CGFloat = 1.0,
+                             constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         for attr in attributes {
-            let constraint = self.makeConstraint(attr,
-                                                 equalTo: view,
-                                                 multiplier: multiplier,
-                                                 constant: constant)
+            let constraint = self.tsv_makeConstraint(attr,
+                                                     equalTo: view,
+                                                     multiplier: multiplier,
+                                                     constant: constant)
             constraints.append(constraint)
         }
         return constraints
