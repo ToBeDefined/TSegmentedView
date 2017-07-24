@@ -42,3 +42,82 @@ extension UIImage {
     }
 }
 
+
+extension UIView {
+    @discardableResult
+    func makeConstraint(_ attribute: NSLayoutAttribute,
+                        is number: CGFloat) -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint.init(item: self,
+                                                 attribute: attribute,
+                                                 relatedBy: NSLayoutRelation.equal,
+                                                 toItem: nil,
+                                                 attribute: NSLayoutAttribute.notAnAttribute,
+                                                 multiplier: 1.0,
+                                                 constant: number)
+        self.addConstraint(constraint)
+        return constraint
+    }
+    
+    @discardableResult
+    func makeConstraint(_ attribute: NSLayoutAttribute,
+                        equalTo view: UIView,
+                        multiplier: CGFloat = 1.0,
+                        constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint.init(item: self,
+                                                 attribute: attribute,
+                                                 relatedBy: NSLayoutRelation.equal,
+                                                 toItem: view,
+                                                 attribute: attribute,
+                                                 multiplier: multiplier,
+                                                 constant: constant)
+        
+        switch attribute {
+        case .width, .height:
+            view.addConstraint(constraint)
+        default:
+            if view != self.superview {
+                view.addConstraint(constraint)
+            } else {
+                self.superview?.addConstraint(constraint)
+            }
+        }
+        return constraint
+    }
+    
+    @discardableResult
+    func makeConstraint(_ attr: NSLayoutAttribute,
+                        equalTo view: UIView,
+                        attribute: NSLayoutAttribute,
+                        multiplier: CGFloat = 1.0,
+                        constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint.init(item: self,
+                                                 attribute: attr,
+                                                 relatedBy: NSLayoutRelation.equal,
+                                                 toItem: view,
+                                                 attribute: attribute,
+                                                 multiplier: multiplier,
+                                                 constant: constant)
+        self.superview?.addConstraint(constraint)
+        return constraint
+    }
+    
+    @discardableResult
+    func makeConstraints(_ attributes: [NSLayoutAttribute],
+                         equalTo view: UIView,
+                         multiplier: CGFloat = 1.0,
+                         constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        for attr in attributes {
+            let constraint = self.makeConstraint(attr,
+                                                 equalTo: view,
+                                                 multiplier: multiplier,
+                                                 constant: constant)
+            constraints.append(constraint)
+        }
+        return constraints
+    }
+}
+

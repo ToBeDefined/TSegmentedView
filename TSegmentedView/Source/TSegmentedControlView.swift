@@ -8,7 +8,6 @@
 
 
 import UIKit
-import Masonry
 
 class TSegmentedControlView: UIView {
     enum SeparateStyle {
@@ -78,18 +77,14 @@ class TSegmentedControlView: UIView {
         topLine = UIImageView()
         topLine.image = colorImage
         self.addSubview(topLine)
-        topLine.mas_makeConstraints { (make) in
-            make!.left.right().top().equalTo()(self)
-            make!.height.mas_equalTo()(1.0 / UIScreen.main.scale)
-        }
+        topLine.makeConstraints([.left, .right, .top], equalTo: self)
+        topLine.makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
         
         bottomLine = UIImageView()
         bottomLine.image = colorImage
         self.addSubview(bottomLine)
-        bottomLine.mas_makeConstraints { (make) in
-            make!.left.right().bottom().equalTo()(self)
-            make!.height.mas_equalTo()(1.0 / UIScreen.main.scale)
-        }
+        bottomLine.makeConstraints([.left, .bottom, .right], equalTo: self)
+        bottomLine.makeConstraint(.height, is: 1.0 / UIScreen.main.scale)
     }
     
     private func creatViews(with titles: [String]) {
@@ -109,15 +104,13 @@ class TSegmentedControlView: UIView {
             control.selectFont = self.selectFont
             control.applyStyle()
             self.addSubview(control)
-            control.mas_makeConstraints({ (make) in
-                if index == 0 {
-                    make!.left.equalTo()(self.mas_left)
-                } else {
-                    make!.left.equalTo()(self.controls[index-1].mas_right)
-                }
-                make!.top.bottom().equalTo()(self)
-                make!.width.equalTo()(self.mas_width)!.multipliedBy()(1.0/count)
-            })
+            if index == 0 {
+                control.makeConstraint(.left, equalTo: self)
+            } else {
+                control.makeConstraint(.left, equalTo: self.controls[index-1], attribute: .right)
+            }
+            control.makeConstraints([.top, .bottom], equalTo: self)
+            control.makeConstraint(.width, equalTo: self, multiplier: 1.0/count)
             controls.append(control)
         }
     }
@@ -201,9 +194,7 @@ class PAControl: UIControl {
     func setupViews() {
         label = UILabel()
         self.addSubview(label)
-        label.mas_makeConstraints { (make) in
-            make!.left.top().right().bottom().equalTo()(self)
-        }
+        label.makeConstraints([.left, .top, .bottom, .right], equalTo: self)
         label.backgroundColor = UIColor.clear
         label.textColor = self.normalColor
         label.font = self.normalFont

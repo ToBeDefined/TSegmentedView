@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Masonry
 
 @objc protocol TSegmentedControlProtocol: class {
     func reloadData(with titles: [String]) -> Void
@@ -81,6 +80,7 @@ class TSegmentedView: UIView {
     fileprivate var isUserScroll: Bool = false
     fileprivate var isFirstLayout: Bool = true
     fileprivate var isFirstReloadData: Bool = true
+    fileprivate var headerViewHeightConstraint: NSLayoutConstraint?
     
     deinit {
         self.removeObserver(from: viewArray[_currentIndex])
@@ -97,9 +97,7 @@ class TSegmentedView: UIView {
         backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         self.addSubview(backgroundView)
-        backgroundView.mas_makeConstraints { (make) in
-            make!.left.right().top().bottom().equalTo()(self)
-        }
+        backgroundView.makeConstraints([.left, .right, .top, .bottom], equalTo: self)
         
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.clear
@@ -110,10 +108,9 @@ class TSegmentedView: UIView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(scrollView)
-        scrollView.mas_makeConstraints { (make) in
-            make!.left.top().right().bottom().equalTo()(self)
-        }
+        scrollView.makeConstraints([.left, .right, .top, .bottom], equalTo: self)
     }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -171,9 +168,7 @@ class TSegmentedView: UIView {
             return
         }
         
-        self.headerView.mas_updateConstraints { (make) in
-            make!.height.equalTo()(self.currentHeaderHeight)
-        }
+        headerViewHeightConstraint?.constant = self.currentHeaderHeight
         self.delegate?.segmentedView?(self, didChangeHeaderHeightTo: self.currentHeaderHeight)
         // 如果下滑，并将头部下拉了则重设每个scrollview的contentOffset
         if currentHeaderHeight > headerMinHeight {
@@ -227,25 +222,20 @@ extension TSegmentedView {
             }
         }
         
-        headerView.mas_remakeConstraints { (make) in
-            make!.top.left().right().equalTo()(self)
-            make!.height.mas_equalTo()(self.headerMaxHeight)
-        }
+        headerView.removeConstraints(headerView.constraints)
+        headerView.makeConstraints([.left, .top, .right], equalTo: self)
+        headerViewHeightConstraint = headerView.makeConstraint(.height, is: self.headerMaxHeight)
         
         if let baseHeader = baseHeader  {
             headerView.addSubview(baseHeader)
-            baseHeader.mas_makeConstraints({ (make) in
-                make!.top.left().right().equalTo()(self.headerView)
-                make!.bottom.equalTo()(self.headerView.mas_bottom)!.offset()(-segmentedHeight)
-            })
+            baseHeader.makeConstraints([.left, .top, .right], equalTo: self.headerView)
+            baseHeader.makeConstraint(.bottom, equalTo: self.headerView, multiplier: 1.0, constant: -segmentedHeight)
         }
         
         if segmentedControlView != nil {
             headerView.addSubview(segmentedControlView!)
-            segmentedControlView!.mas_makeConstraints { (make) in
-                make!.left.bottom().right().equalTo()(self.headerView)
-                make!.height.mas_equalTo()(segmentedHeight)
-            }
+            segmentedControlView!.makeConstraints([.left, .right, .bottom], equalTo: self.headerView)
+            segmentedControlView!.makeConstraint(.height, is: segmentedHeight)
         }
         
         segmentedControlView_P?.setAction({ [weak self] (index) in
@@ -281,14 +271,12 @@ extension TSegmentedView {
         
         let viewHeight = view.frame.height
         subScrollView.addSubview(view)
-        view.mas_makeConstraints { (make) in
-            make!.left.right().top().bottom().equalTo()(subScrollView)
-            make!.width.equalTo()(self.mas_width)
-            if viewHeight != 0 {
-                make!.height.mas_equalTo()(viewHeight)
-            } else {
-                make!.height.equalTo()(self.mas_height)
-            }
+        view.makeConstraints([.left, .right, .top, .bottom], equalTo: subScrollView)
+        view.makeConstraint(.width, equalTo: self)
+        if viewHeight != 0 {
+            view.makeConstraint(.height, is: viewHeight)
+        } else {
+            view.makeConstraint(.height, equalTo: self)
         }
     }
     
@@ -317,10 +305,8 @@ extension TSegmentedView {
             let tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: viewWidth, height: viewHeight + headerMaxHeight - headerMinHeight))
             tableHeaderView.backgroundColor = UIColor.clear
             tableHeaderView.addSubview(view)
-            view.mas_makeConstraints({ (make) in
-                make!.left.right().bottom().equalTo()(tableHeaderView)
-                make!.height.equalTo()(viewHeight)
-            })
+            view.makeConstraints([.left, .right, .bottom], equalTo: tableHeaderView)
+            view.makeConstraint(.height, is: viewHeight)
             tableView.tableHeaderView = tableHeaderView
         } else {
             let tableHeaderView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerMaxHeight - self.headerMinHeight))
@@ -333,19 +319,17 @@ extension TSegmentedView {
     fileprivate func layoutView(_ view: UIScrollView, to index: Int) {
         self.scrollView.addSubview(view)
         self.viewArray.append(view)
-        view.mas_makeConstraints { (make) in
-            make!.top.bottom().equalTo()(self.scrollView)
-            make!.height.equalTo()(self.mas_height)
-            make!.width.equalTo()(self.mas_width)
-            if index == 0 {
-                make!.left.equalTo()(self.scrollView.mas_left)
-            } else {
-                make!.left.equalTo()(self.viewArray[index-1].mas_right)
-            }
-            
-            if index == self.pageCount - 1 {
-                make!.right.equalTo()(self.scrollView.mas_right)
-            }
+        
+        view.makeConstraints([.top, .bottom], equalTo: self.scrollView)
+        view.makeConstraints([.height, .width], equalTo: self)
+        if index == 0 {
+            view.makeConstraint(.left, equalTo: self.scrollView)
+        } else {
+            view.makeConstraint(.left, equalTo: self.viewArray[index-1], attribute: .right)
+        }
+        
+        if index == self.pageCount - 1 {
+            view.makeConstraint(.right, equalTo: self.scrollView)
         }
     }
 }
