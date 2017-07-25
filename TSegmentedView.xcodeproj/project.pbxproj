@@ -12,9 +12,9 @@
 		D7BEF5A81F1DF84A007CB419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BEF5A71F1DF84A007CB419 /* Assets.xcassets */; };
 		D7BEF5AB1F1DF84A007CB419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BEF5A91F1DF84A007CB419 /* LaunchScreen.storyboard */; };
 		D7BEF5B61F1DF911007CB419 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B41F1DF911007CB419 /* MainViewController.swift */; };
-		D7BEF5B91F1DFB58007CB419 /* TSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */; };
-		D7BEF5BA1F1DFB58007CB419 /* TSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */; };
-		D7BEF5BC1F1DFBCA007CB419 /* TSVExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */; };
+		D7D5DB521F26E89100842F55 /* TSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DB4F1F26E88400842F55 /* TSegmentedControlView.swift */; };
+		D7D5DB531F26E89100842F55 /* TSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DB501F26E88400842F55 /* TSegmentedView.swift */; };
+		D7D5DB541F26E89100842F55 /* TSVExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DB511F26E88400842F55 /* TSVExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +24,10 @@
 		D7BEF5A71F1DF84A007CB419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7BEF5AA1F1DF84A007CB419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7BEF5AC1F1DF84A007CB419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedView.swift; sourceTree = "<group>"; };
-		D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedControlView.swift; sourceTree = "<group>"; };
 		D7BEF5B41F1DF911007CB419 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSVExtension.swift; sourceTree = "<group>"; };
+		D7D5DB4F1F26E88400842F55 /* TSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedControlView.swift; sourceTree = "<group>"; };
+		D7D5DB501F26E88400842F55 /* TSegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSegmentedView.swift; sourceTree = "<group>"; };
+		D7D5DB511F26E88400842F55 /* TSVExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSVExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +51,7 @@
 		D7BEF5941F1DF84A007CB419 = {
 			isa = PBXGroup;
 			children = (
+				D7D5DB4E1F26E88400842F55 /* Source */,
 				D7BEF59F1F1DF84A007CB419 /* TSegmentedView */,
 				D7BEF59E1F1DF84A007CB419 /* Products */,
 				446BF0E76A944EA4F05EE9CE /* Frameworks */,
@@ -68,7 +69,6 @@
 		D7BEF59F1F1DF84A007CB419 /* TSegmentedView */ = {
 			isa = PBXGroup;
 			children = (
-				D7BEF5B81F1DF918007CB419 /* Source */,
 				D7BEF5A01F1DF84A007CB419 /* AppDelegate.swift */,
 				D7BEF5B41F1DF911007CB419 /* MainViewController.swift */,
 				D7BEF5A21F1DF84A007CB419 /* ViewController.swift */,
@@ -79,12 +79,12 @@
 			path = TSegmentedView;
 			sourceTree = "<group>";
 		};
-		D7BEF5B81F1DF918007CB419 /* Source */ = {
+		D7D5DB4E1F26E88400842F55 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D7BEF5BB1F1DFBCA007CB419 /* TSVExtension.swift */,
-				D7BEF5B21F1DF8B9007CB419 /* TSegmentedView.swift */,
-				D7BEF5B31F1DF8B9007CB419 /* TSegmentedControlView.swift */,
+				D7D5DB4F1F26E88400842F55 /* TSegmentedControlView.swift */,
+				D7D5DB501F26E88400842F55 /* TSegmentedView.swift */,
+				D7D5DB511F26E88400842F55 /* TSVExtension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -159,10 +159,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7BEF5B91F1DFB58007CB419 /* TSegmentedView.swift in Sources */,
-				D7BEF5BA1F1DFB58007CB419 /* TSegmentedControlView.swift in Sources */,
+				D7D5DB521F26E89100842F55 /* TSegmentedControlView.swift in Sources */,
+				D7D5DB531F26E89100842F55 /* TSegmentedView.swift in Sources */,
+				D7D5DB541F26E89100842F55 /* TSVExtension.swift in Sources */,
 				D7BEF5B61F1DF911007CB419 /* MainViewController.swift in Sources */,
-				D7BEF5BC1F1DFBCA007CB419 /* TSVExtension.swift in Sources */,
 				D7BEF5A31F1DF84A007CB419 /* ViewController.swift in Sources */,
 				D7BEF5A11F1DF84A007CB419 /* AppDelegate.swift in Sources */,
 			);

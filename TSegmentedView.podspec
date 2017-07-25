@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TSegmentedView"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "You can use TSegmentedView create scroll page views"
   s.description  = "You can use TSegmentedView create scroll page views, homepage is https://github.com/tobedefined/TSegmentedView"
   s.homepage     = "https://github.com/tobedefined/TSegmentedView"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://tbd.tech/"
   s.ios.deployment_target = "8.0"
   s.source       = { :git => "https://github.com/tobedefined/TSegmentedView.git", :tag => "#{s.version}" }
-  s.source_files  = "TSegmentedView/Source/*.swift"
+  s.source_files  = "Source/*.swift"
   s.exclude_files = "Classes/Exclude"
   s.frameworks   = "Foundation", "UIKit"
 end
