@@ -37,9 +37,9 @@ import UIKit
 }
 
 public class TSegmentedView: UIView {
-    weak var delegate: TSegmentedViewDelegate?
+    public weak var delegate: TSegmentedViewDelegate?
     
-    var currentIndex: Int {
+    public var currentIndex: Int {
         get {
             return _currentIndex
         }
@@ -120,7 +120,7 @@ public class TSegmentedView: UIView {
         }
     }
     
-    func reloadData() {
+    public func reloadData() {
         guard let delegate = self.delegate else {
             return
         }
