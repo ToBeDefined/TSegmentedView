@@ -1,12 +1,15 @@
 //
 //  ViewController.swift
-//  TSegmentedView
+//  Example
 //
-//  Created by 邵伟男 on 2017/7/18.
+//  Created by 邵伟男 on 2017/7/25.
 //  Copyright © 2017年 邵伟男. All rights reserved.
 //
 
 import UIKit
+import TSegmentedView
+import SnapKit
+
 class ViewController: UIViewController {
     enum HeaderViewType {
         case topFixed
@@ -23,8 +26,10 @@ class ViewController: UIViewController {
         
         sview = TSegmentedView()
         self.view.addSubview(sview)
-        sview.tsv_makeConstraints([.left, .bottom, .right], equalTo: self.view)
-        sview.tsv_makeConstraint(.top, equalTo: self.view, multiplier: 1.0, constant: 64)
+        sview.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(64)
+        }
         sview.delegate = self
         sview.reloadData()
         
@@ -98,18 +103,20 @@ extension ViewController: TSegmentedViewDelegate {
         label.textAlignment = .center
         label.backgroundColor = UIColor.brown
         label.text = "灰色的是segmentedViewHeaderView\n这是内部的label"
-        switch self.headerViewType {
-        case .topFixed:
-            label.tsv_makeConstraint(.top, equalTo: view)
-        case .centerFixed:
-            label.tsv_makeConstraint(.centerY, equalTo: view)
-        case .bottomFixed:
-            label.tsv_makeConstraint(.bottom, equalTo: view)
-        }
-        label.tsv_makeConstraint(.centerX, equalTo: view)
-        label.tsv_makeConstraint(.width, is: 300)
-        label.tsv_makeConstraint(.height, is: minHeight)
         
+        label.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.width.equalTo(300)
+            make.height.equalTo(minHeight)
+            switch self.headerViewType {
+            case .topFixed:
+                make.top.equalToSuperview()
+            case .centerFixed:
+                make.centerY.equalToSuperview()
+            case .bottomFixed:
+                make.bottom.equalToSuperview()
+            }
+        }
         return view
     }
 }
@@ -134,9 +141,11 @@ extension ViewController {
         let view = UIView()
         view.backgroundColor = UIColor.blue
         scView.addSubview(view)
-        view.tsv_makeConstraints([.left, .top, .right, .bottom], equalTo: scView)
-        view.tsv_makeConstraint(.height, is: 900)
-        view.tsv_makeConstraint(.width, is: UIScreen.main.bounds.width)
+        view.snp.makeConstraints { (make) in
+            make.left.top.right.bottom.equalToSuperview()
+            make.height.equalTo(900)
+            make.width.equalTo(UIScreen.main.bounds.width)
+        }
         let label = UILabel.init(frame: CGRect.init(x: 100,
                                                     y: 100,
                                                     width: 200,
@@ -160,10 +169,11 @@ extension ViewController {
         label.textAlignment = .center
         label.backgroundColor = UIColor.red
         hv.addSubview(label)
-        label.tsv_makeConstraints([.centerX, .centerY], equalTo: hv)
-        label.tsv_makeConstraint(.height, is: 50)
-        label.tsv_makeConstraint(.width, is: 300)
-        
+        label.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(300)
+        }
         tbView.tableHeaderView = hv
         tbView.delegate = self
         tbView.dataSource = self
@@ -210,7 +220,4 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return label
     }
 }
-
-
-
 

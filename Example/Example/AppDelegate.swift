@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  TSegmentedView
+//  Example
 //
-//  Created by 邵伟男 on 2017/7/18.
+//  Created by 邵伟男 on 2017/7/25.
 //  Copyright © 2017年 邵伟男. All rights reserved.
 //
 
@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = MainViewController()
         let nav = UINavigationController.init(rootViewController: vc)
         self.window?.rootViewController = nav
+        // Override point for customization after application launch.
         return true
     }
 
