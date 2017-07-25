@@ -11,7 +11,7 @@
 		D70418881F271B3F00A0A2FF /* TSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70418851F27166A00A0A2FF /* TSegmentedView.framework */; };
 		D704188A1F271CB400A0A2FF /* TSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D70418851F27166A00A0A2FF /* TSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D708754D1F2711B1000E30FF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708754C1F2711B1000E30FF /* MainViewController.swift */; };
-		D70C358F1F27238D000EF931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D70C358E1F27238D000EF931 /* LaunchScreen.storyboard */; };
+		D73DBE901F27262100768306 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73DBE8F1F27262100768306 /* Launch Screen.storyboard */; };
 		D774BD101F2710CF001CA161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774BD0F1F2710CF001CA161 /* AppDelegate.swift */; };
 		D774BD121F2710CF001CA161 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774BD111F2710CF001CA161 /* ViewController.swift */; };
 		D774BD171F2710CF001CA161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D774BD161F2710CF001CA161 /* Assets.xcassets */; };
@@ -36,7 +36,7 @@
 		7221CDA439CBDFC94B961DDA /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		D70418851F27166A00A0A2FF /* TSegmentedView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TSegmentedView.framework; path = "../../Library/Developer/Xcode/DerivedData/TSegmentedView-eeqbxieubzshfccthkloycfvfxid/Build/Products/Debug-iphoneos/TSegmentedView.framework"; sourceTree = "<group>"; };
 		D708754C1F2711B1000E30FF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		D70C358E1F27238D000EF931 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D73DBE8F1F27262100768306 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D774BD0C1F2710CF001CA161 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D774BD0F1F2710CF001CA161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D774BD111F2710CF001CA161 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 				D774BD0F1F2710CF001CA161 /* AppDelegate.swift */,
 				D708754C1F2711B1000E30FF /* MainViewController.swift */,
 				D774BD111F2710CF001CA161 /* ViewController.swift */,
-				D70C358E1F27238D000EF931 /* LaunchScreen.storyboard */,
+				D73DBE8F1F27262100768306 /* Launch Screen.storyboard */,
 				D774BD161F2710CF001CA161 /* Assets.xcassets */,
 				D774BD1B1F2710CF001CA161 /* Info.plist */,
 			);
@@ -169,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D70C358F1F27238D000EF931 /* LaunchScreen.storyboard in Resources */,
+				D73DBE901F27262100768306 /* Launch Screen.storyboard in Resources */,
 				D774BD171F2710CF001CA161 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
