@@ -149,7 +149,9 @@ func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
 
 
 ### 关于 `TSegmentedControlProtocol`
+
 你可以看到在`TSegmentedView.swift`中看到这个协议的定义
+
 ```swift
 @objc protocol TSegmentedControlProtocol: class {
     func reloadData(with titles: [String]) -> Void
@@ -159,26 +161,22 @@ func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
 ```
 - 作用：
 
-  > `TSegmentedView`允许用户自定义`SegmentedControlView`而不是必须使用`TSegmentedControlView`
+    > `TSegmentedView`允许用户自定义`SegmentedControlView`而不是必须使用`TSegmentedControlView`
 
 - 如何自定义`SegmentedControlView`
 
-  > 首先创建的view必须是`UIView`的子类，然后符合`TSegmentedControlProtocol`协议，并实现这三个方法
+    > 首先创建的view必须是`UIView`的子类，然后符合`TSegmentedControlProtocol`协议，并实现这三个方法
 
 - `func reloadData(with titles: [String]) -> Void`
 
-  > 这个方法在`TSegmentedView` `reloadData`的时候回去调用，这个方法中需要实现更新对应tab的view创建删除显示等操作，`titles`的值为`TSegmentedControlView`的代理方法返回的 array
+    > 这个方法在`TSegmentedView` `reloadData`的时候回去调用，这个方法中需要实现更新对应tab的view创建删除显示等操作，`titles`的值为`TSegmentedControlView`的代理方法返回的 array
 
 - `func userScrollExtent(_ extent: CGFloat) -> Void`
 
-  > 这个方法在`TSegmentedView` 滑动（用户手动滑动）的时候回去调用，这个方法中需要实现更新对应tab的view显示样式或自定义一些动画等,`extent`的值为当前滑动的占比。例如有3个tab，则范围为`0.0 ~ 2.0`
-
-- `func reloadData(with titles: [String]) -> Void`
-
-  > 这个方法在`TSegmentedView` `reloadData`的时候回去调用，这个方法中需要实现更新对应tab的view创建删除显示等操作
+    > 这个方法在`TSegmentedView` 滑动（用户手动滑动）的时候回去调用，这个方法中需要实现更新对应tab的view显示样式或自定义一些动画等,`extent`的值为当前滑动的占比。例如有3个tab，则范围为`0.0 ~ 2.0`
 
 - `func setAction(_ actionBlock: ((_ index: Int) -> Void)?) -> Void`
 
-  > 这个方法需要你将`actionBlock`进行保存，并在点击tab时候进行调用`actionBlock`，这样才会滚动到对应tab的view的位置。（刚开始考虑是在协议中定义一个`actionBlock`的变量，为了兼容`Objective-C`，所以还是定义成函数。）
+    > 这个方法需要你将`actionBlock`进行保存，并在点击tab时候进行调用`actionBlock`，这样才会滚动到对应tab的view的位置。（刚开始考虑是在协议中定义一个`actionBlock`的变量，为了兼容`Objective-C`，所以还是定义成函数。）
 
 

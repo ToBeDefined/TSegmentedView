@@ -163,24 +163,20 @@ You can see the definition of this protocol in `TSegmentedView.swift`
 
 - Why define `TSegmentedControlProtocol`:
 
-  > `TSegmentedView` allows users to customize `SegmentedControlView` instead of having to use `TSegmentedControlView`'
+    > `TSegmentedView` allows users to customize `SegmentedControlView` instead of having to use `TSegmentedControlView`'
 - how to customize `SegmentedControlView`
 
-  > The first view created must be a subclass of `UIView`, then conform to the `TSegmentedControlProtocol` protocol and implement these three methods
+    > The first view created must be a subclass of `UIView`, then conform to the `TSegmentedControlProtocol` protocol and implement these three methods
 
 - `func reloadData (with titles: [String]) -> Void`
 
-  > This method in the `TSegmentedView` `reloadData` when the call back, this method needs to be updated to achieve the corresponding tab to create a delete display and other operations, `titles` is `TSegmentedControlView` proxy method to return the array
+    > This method in the `TSegmentedView` `reloadData` when the call back, this method needs to be updated to achieve the corresponding tab to create a delete display and other operations, `titles` is `TSegmentedControlView` proxy method to return the array
 
 - `func userScrollExtent (_ extent: CGFloat) -> Void`
 
-  > This method in the `TSegmentedView` slide (the user manually slide) when the call back, this method needs to update the corresponding tab of the view display style or custom animation, `extent` the value of the current sliding ratio. For example, there are three tabs, the range is `0.0 ~ 2.0`
+    > This method in the `TSegmentedView` slide (the user manually slide) when the call back, this method needs to update the corresponding tab of the view display style or custom animation, `extent` the value of the current sliding ratio. For example, there are three tabs, the range is `0.0 ~ 2.0`
 
-- `func reloadData (with titles: [String]) -> Void`
+- `func setAction(_ actionBlock: ((_ index: Int) -> Void)?) -> Void`
 
-  > This method in the `TSegmentedView`` reloadData` back when the call, this method needs to be updated to achieve the corresponding tab to create a delete display and other operations
-
-- `func setAction (_ actionBlock: ((_ index: Int) -> Void) -> Void`
-
-  > This method requires you to save `actionBlock` and call` actionBlock` when you click tab, then, will scroll to the corresponding tab's view. (Initially considered to be in the protocol to define a `actionBlock` variable, in order to be compatible with `Objective-C`, it is defined as a function.)
+    > This method requires you to save `actionBlock` and call` actionBlock` when you click tab, then, will scroll to the corresponding tab's view. (Initially considered to be in the protocol to define a `actionBlock` variable, in order to be compatible with `Objective-C`, it is defined as a function.)
 
