@@ -1,4 +1,10 @@
 
+
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/tobedefined/TSegmentedView/blob/master/LICENSE)&nbsp;
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
+[![CocoaPods](https://img.shields.io/badge/Cocoapods-compatible-brightgreen.svg?style=flat)](http://cocoapods.org/)&nbsp;
+![platform](https://img.shields.io/badge/Platform-iOS%E2%89%A58.0-orange.svg?style=flat)
+
 TSegmentedView
 ------
 
@@ -36,8 +42,55 @@ TSegmentedView
 <img src="images/sectionHeader.PNG" width="40%" height="40%" />
 
 ### Why wrote `TSegmentedView`
+
 Now a lot of similar framework, but still do one, mainly because most of the framework of the Internet to write the `SegmentedControlView` (that is, tab style), the other important point is that I have tried a lot of frames found` UITableView` `tableHeaderView `There will be problems, and once the section header view, hover has a problem, so I wrote this ...
 
+### Installation
+
+#### CocoaPods
+
+[`CocoaPods`](https://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate `TSegmentedView` into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'TSegmentedView'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+#### Carthage
+
+[`Carthage`](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [`Homebrew`](https://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate `TSegmentedView` into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ruby
+github "tobedefined/TSegmentedView" ~> 1.0.2
+```
+
+Run `carthage update` to build the framework and drag the built `TSegmentedView.framework` into your Xcode project.
 
 ### How to use
 
@@ -84,7 +137,9 @@ optional protocol functions
 @objc optional func segmentedView(_ view: TSegmentedView, didChangeHeaderHeightTo height: CGFloat) -> Void
 
 ```
+
 - Optional function usage
+
   1. Function is in the index corresponding to the view will be called, will be called every time when select or scroll to the index
   2. The function returns the defined `SegmentedControlView` (the default is `TSegmentedControlView`)
   3. function returns `TSegmentedView` created when the choice of which tab (the default choice of the first tab -> index = 0)
@@ -107,15 +162,25 @@ You can see the definition of this protocol in `TSegmentedView.swift`
 ```
 
 - Why define `TSegmentedControlProtocol`:
+
   > `TSegmentedView` allows users to customize `SegmentedControlView` instead of having to use `TSegmentedControlView`'
 - how to customize `SegmentedControlView`
+
   > The first view created must be a subclass of `UIView`, then conform to the `TSegmentedControlProtocol` protocol and implement these three methods
+
 - `func reloadData (with titles: [String]) -> Void`
+
   > This method in the `TSegmentedView` `reloadData` when the call back, this method needs to be updated to achieve the corresponding tab to create a delete display and other operations, `titles` is `TSegmentedControlView` proxy method to return the array
+
 - `func userScrollExtent (_ extent: CGFloat) -> Void`
+
   > This method in the `TSegmentedView` slide (the user manually slide) when the call back, this method needs to update the corresponding tab of the view display style or custom animation, `extent` the value of the current sliding ratio. For example, there are three tabs, the range is `0.0 ~ 2.0`
+
 - `func reloadData (with titles: [String]) -> Void`
+
   > This method in the `TSegmentedView`` reloadData` back when the call, this method needs to be updated to achieve the corresponding tab to create a delete display and other operations
+
 - `func setAction (_ actionBlock: ((_ index: Int) -> Void) -> Void`
+
   > This method requires you to save `actionBlock` and call` actionBlock` when you click tab, then, will scroll to the corresponding tab's view. (Initially considered to be in the protocol to define a `actionBlock` variable, in order to be compatible with `Objective-C`, it is defined as a function.)
 
