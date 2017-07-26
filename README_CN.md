@@ -1,15 +1,33 @@
 
+
+<div align="center">
+
+TSegmentedView
+------
+
+</div>
+
+<div align="center">
+
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/tobedefined/TSegmentedView/blob/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](https://img.shields.io/badge/Cocoapods-compatible-brightgreen.svg?style=flat)](http://cocoapods.org/)&nbsp;
 ![platform](https://img.shields.io/badge/Platform-iOS%E2%89%A58.0-orange.svg?style=flat)
 
+</div>
 
-TSegmentedView
-------
+
+<div align="center">
+
 [English Document](README.md)
 
+</div>
+
+<div align="center">
+
 ![演示](images/demo.gif)
+
+</div>
 
 ### 特点
 
@@ -24,19 +42,27 @@ TSegmentedView
 
 > UIView支持
 
-<img src="images/UIView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UIView.PNG" width="30%" height="30%" />
+</div>
 
 > UIScrollView 支持
 
-<img src="images/UIScrollView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UIScrollView.PNG" width="30%" height="30%" />
+</div>
 
 > UITableView 支持添加 tableHeaderView
 
-<img src="images/UITableView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UITableView.PNG" width="30%" height="30%" />
+</div>
 
 > UITableView 支持添加 section header
 
-<img src="images/sectionHeader.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/sectionHeader.PNG" width="30%" height="30%" />
+</div>
 
 ### 为什么做这个
 
@@ -92,11 +118,23 @@ github "tobedefined/TSegmentedView" ~> 1.0.2
 
 ### 如何使用
 
+- swift
+
+```swift
+import TSegmentedView
+```
+
+- Objective-C
+
+```objc
+#import <TSegmentedView/TSegmentedView-Swift.h>
+```
+
 你可以在demo中看具体的使用方法，下面是具体的介绍
 
 #### 遵守协议： `TSegmentedViewDelegate`
 
-```js
+```swift
 func segmentedViewTitles(in segmentedView: TSegmentedView) -> [String]
 
 func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
@@ -107,7 +145,7 @@ func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
 
 可选的协议函数 
 
-```js
+```swift
 
 // 1 
 @objc optional func segmentedView(_ view: TSegmentedView, didShow index: Int) -> Void

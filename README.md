@@ -1,18 +1,32 @@
 
 
+<div align="center">
+
+TSegmentedView
+------
+
+</div>
+
+<div align="center">
+
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/tobedefined/TSegmentedView/blob/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](https://img.shields.io/badge/Cocoapods-compatible-brightgreen.svg?style=flat)](http://cocoapods.org/)&nbsp;
 ![platform](https://img.shields.io/badge/Platform-iOS%E2%89%A58.0-orange.svg?style=flat)
 
-TSegmentedView
-------
+</div>
+
+<div align="center">
 
 [中文文档](README_CN.md)
 
+</div>
+
+<div align="center">
 
 ![演示](images/demo.gif)
 
+</div>
 
 ### Features
 
@@ -27,19 +41,27 @@ TSegmentedView
 
 > support UIView
 
-<img src="images/UIView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UIView.PNG" width="30%" height="30%" />
+</div>
 
 > support UIScrollView
 
-<img src="images/UIScrollView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UIScrollView.PNG" width="30%" height="30%" />
+</div>
 
 > support UITableView add tableHeaderView
 
-<img src="images/UITableView.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/UITableView.PNG" width="30%" height="30%" />
+</div>
 
 > support UITableView add section header
 
-<img src="images/sectionHeader.PNG" width="40%" height="40%" />
+<div align="center">
+    <img src="images/sectionHeader.PNG" width="30%" height="30%" />
+</div>
 
 ### Why wrote `TSegmentedView`
 
@@ -93,6 +115,18 @@ github "tobedefined/TSegmentedView" ~> 1.0.2
 Run `carthage update` to build the framework and drag the built `TSegmentedView.framework` into your Xcode project.
 
 ### How to use
+
+- swift
+
+```swift
+import TSegmentedView
+```
+
+- Objective-C
+
+```objc
+#import <TSegmentedView/TSegmentedView-Swift.h>
+```
 
 You can see the specific use of the demo, the following is a specific introduction
 
