@@ -69,10 +69,17 @@ extension ViewController: TSegmentedViewDelegate {
         }
     }
     
+    #if swift(>=3.2)
+    func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> (UIView & TSegmentedControlProtocol) {
+        let sc = TSegmentedControlView()
+        return sc
+    }
+    #else
     func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> UIView {
         let sc = TSegmentedControlView()
         return sc
     }
+    #endif
     
     func segmentedViewFirstStartSelectIndex(in segmentedView: TSegmentedView) -> Int {
         return 1

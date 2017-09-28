@@ -22,7 +22,11 @@ import UIKit
     
     @objc optional func segmentedView(_ view: TSegmentedView, didShow index: Int) -> Void
     
+    #if swift(>=3.2)
+    @objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> (UIView & TSegmentedControlProtocol)
+    #else
     @objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> UIView
+    #endif
     // default is 0
     @objc optional func segmentedViewFirstStartSelectIndex(in segmentedView: TSegmentedView) -> Int
     // default is nil
@@ -66,15 +70,17 @@ public class TSegmentedView: UIView {
     fileprivate var viewArray = [UIScrollView]()
     // segmentedControlView 的类型在swift3中无法设置为 UIView & TSegmentedControlProtocol
     // swift4 中改变为 UIView & TSegmentedControlProtocol 类型
+    #if swift(>=3.2)
+    fileprivate var segmentedControlView: (UIView & TSegmentedControlProtocol)?
+    #else
     fileprivate var segmentedControlView: UIView?
     fileprivate var segmentedControlView_P: TSegmentedControlProtocol? {
-        get {
-            if segmentedControlView != nil {
-                assert((segmentedControlView as? TSegmentedControlProtocol) != nil, "segmentedControl must is 'nil' or a 'UIView and conforming to TSegmentedControlProtocol'")
-            }
-            return segmentedControlView as? TSegmentedControlProtocol
+        if segmentedControlView != nil {
+            assert((segmentedControlView as? TSegmentedControlProtocol) != nil, "segmentedControl must is 'nil' or a 'UIView and conforming to TSegmentedControlProtocol'")
         }
+        return segmentedControlView as? TSegmentedControlProtocol
     }
+    #endif
     
     // signal 
     fileprivate var isUserScroll: Bool = false
@@ -192,7 +198,12 @@ public class TSegmentedView: UIView {
         }
         _currentIndex = index
         self.scrollView(scrollTo: index, animated: false)
-        self.segmentedControlView_P?.userScrollExtent(self.scrollView.contentOffset.x/self.frame.width)
+        #if swift(>=3.2)
+            self.segmentedControlView?.userScrollExtent(self.scrollView.contentOffset.x/self.frame.width)
+        #else
+            self.segmentedControlView_P?.userScrollExtent(self.scrollView.contentOffset.x/self.frame.width)
+        #endif
+            
         self.addObserver(to: viewArray[index])
     }
 }
@@ -238,6 +249,13 @@ extension TSegmentedView {
             segmentedControlView!.tsv_makeConstraint(.height, is: segmentedHeight)
         }
         
+        var segmentedControlView_P: TSegmentedControlProtocol?
+        #if swift(>=3.2)
+            segmentedControlView_P = self.segmentedControlView
+        #else
+            segmentedControlView_P = self.segmentedControlView_P
+        #endif
+        
         segmentedControlView_P?.setAction({ [weak self] (index) in
             guard let strongSelf = self else {
                 return
@@ -248,7 +266,12 @@ extension TSegmentedView {
             strongSelf._currentIndex = index
             strongSelf.scrollView(scrollTo: index, animated: true)
         })
-        segmentedControlView_P?.reloadData(with: titles)
+        
+        #if swift(>=3.2)
+            self.segmentedControlView?.reloadData(with: titles)
+        #else
+            self.segmentedControlView_P?.reloadData(with: titles)
+        #endif
     }
     
     // 添加view到self.scrollView上
@@ -391,7 +414,11 @@ extension TSegmentedView: UIScrollViewDelegate {
             self.addObserver(to: self.viewArray[index])
             _currentIndex = index
             self.delegate?.segmentedView?(self, didShow: index)
-            self.segmentedControlView_P?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
+            #if swift(>=3.2)
+                self.segmentedControlView?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
+            #else
+                self.segmentedControlView_P?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
+            #endif
         }
     }
     
