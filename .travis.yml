@@ -1,8 +1,5 @@
 language: objective-c
 osx_image: xcode9
-branches:
-  only:
-    - master
 env:
   global:
   - WORKSPACE="TSegmentedView.xcworkspace"
