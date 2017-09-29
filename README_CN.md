@@ -31,7 +31,7 @@ TSegmentedView
 
 ### 特点
 
-- 完美兼容`Objective-C`和`swift`
+- 完美兼容`Objective-C`和`Swift(3/3.1/3.2/4)`
 - 支持用户滑动和点击tab
 - 支持滑动返回(在任意的tab)
 - 支持`Frame`和`Autolayout`自动布局，你可以使用`Masonry`/`SnapKit`/`NSLayoutConstraint`去布局view
@@ -69,6 +69,12 @@ TSegmentedView
 现在很多类似的框架，但是还是做了一个，主要是因为网上大多数框架写死了`SegmentedControlView`(就是tab的样式)，另外最重要的一点是我试验过很多框架发现`UITableView`的`tableHeaderView`会有问题，而且一旦设置section header view，悬停都有问题，所以我就自己写了一个……
 
 ### 导入项目
+
+#### 源文件
+
+如果你的项目使用`Swift 3/3.1`，并且没使用`Xcode 9`，请下载`Source`目录中的`TSegmentedControlView.swift`、`TSegmentedView.swift`、`TSVExtension.swift`并放入你的项目中，无须其他配置即可使用。
+
+如果你的项目使用`Xcode 9`，建议使用`CocoaPods`或者`Carthage`方式。
 
 #### CocoaPods
 
@@ -111,7 +117,7 @@ $ brew install carthage
 要将`TSegmentedView`集成到使用Carthage的Xcode项目中，请在`Cartfile`中加入：
 
 ```ruby
-github "tobedefined/TSegmentedView" ~> 1.0.2
+github "tobedefined/TSegmentedView" ~> 1.1.0
 ```
 
 运行`carthage update`构建framework，并将编译的`TSegmentedView.framework`拖入Xcode项目中。
@@ -150,7 +156,9 @@ func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
 // 1 
 @objc optional func segmentedView(_ view: TSegmentedView, didShow index: Int) -> Void
 
-// 2
+// 2.1 (Swift 3.2/4)
+@objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> (UIView & TSegmentedControlProtocol)
+// 2.2 (Swift 3/3.1)
 @objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> UIView
 
 // 3
@@ -178,7 +186,7 @@ func segmentedView(_ view: TSegmentedView, viewForIndex index: Int) -> UIView
 - 可选函数解释
 
   1. 函数是在`index`对应的view显示时候会调用，每次都会调用
-  2. 函数返回定义的`SegmentedControlView`（默认为`TSegmentedControlView`）
+  2. 函数返回定义的`SegmentedControlView`，需要为符合`TSegmentedControlProtocol`协议的`UIView`
   3. 函数返回`TSegmentedView`创建时候选择哪一个tab（默认选择第一个tab--> index = 0）
   4. 返回headerView（默认为nil）
   5. 设置header的最大高度（默认为header的frame的size.height）

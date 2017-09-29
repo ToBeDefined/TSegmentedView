@@ -30,7 +30,7 @@ TSegmentedView
 
 ### Features
 
-- perfectly compatible with `Objective-C` and` swift`
+- perfectly compatible with `Objective-C` and `Swift(3/3.1/3.2/4)`
 - support user scorll and click tab
 - support slide back(in any tab)
 - support `Frame` and `Autolayout`, you can use `Masonry`/`SnapKit`/`NSLayoutConstraint` layout views
@@ -68,6 +68,12 @@ TSegmentedView
 Now a lot of similar framework, but still do one, mainly because most of the framework of the Internet to write the `SegmentedControlView` (that is, tab style), the other important point is that I have tried a lot of frames found` UITableView` `tableHeaderView `There will be problems, and once the section header view, hover has a problem, so I wrote this ...
 
 ### Installation
+
+#### Source File
+
+If your project uses `Swift 3/3.1` and does not use `Xcode 9`, please download `TSegmentedControlView.swift`, `TSegmentedView.swift`, `TSVExtension.swift` in the `Source` directory and put them in your project, No other configuration can be used.
+
+If your project uses `Xcode 9`, it is recommended to use `CocoaPods` or `Carthage`.
 
 #### CocoaPods
 
@@ -109,7 +115,7 @@ $ brew install carthage
 To integrate `TSegmentedView` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ruby
-github "tobedefined/TSegmentedView" ~> 1.0.2
+github "tobedefined/TSegmentedView" ~> 1.1.0
 ```
 
 Run `carthage update` to build the framework and drag the built `TSegmentedView.framework` into your Xcode project.
@@ -147,7 +153,9 @@ optional protocol functions
 // 1 
 @objc optional func segmentedView(_ view: TSegmentedView, didShow index: Int) -> Void
 
-// 2
+// 2.1 (Swift 3.2/4)
+@objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> (UIView & TSegmentedControlProtocol)
+// 2.2 (Swift 3/3.1)
 @objc optional func segmentedViewSegmentedControlView(in segmentedView: TSegmentedView) -> UIView
 
 // 3
@@ -175,7 +183,7 @@ optional protocol functions
 - Optional function usage
 
   1. Function is in the index corresponding to the view will be called, will be called every time when select or scroll to the index
-  2. The function returns the defined `SegmentedControlView` (the default is `TSegmentedControlView`)
+  2. The function returns the `SegmentedControlView` of the definition, which needs to be `UIView` that conforms to the `TSegmentedControlProtocol` protocol
   3. function returns `TSegmentedView` created when the choice of which tab (the default choice of the first tab -> index = 0)
   4. return headerView (default is nil)
   5. Set the maximum height of the header (the default size of the header view's frame height)
