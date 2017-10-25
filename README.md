@@ -5,6 +5,8 @@
 TSegmentedView
 ------
 
+[![Join the chat at https://gitter.im/TSegmentedView/Lobby](https://badges.gitter.im/TSegmentedView/Lobby.svg)](https://gitter.im/TSegmentedView/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 </div>
 
 <div align="center">
