@@ -5,8 +5,6 @@
 TSegmentedView
 ------
 
-[![Join the chat at https://gitter.im/TSegmentedView/Lobby](https://badges.gitter.im/TSegmentedView/Lobby.svg)](https://gitter.im/TSegmentedView/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 </div>
 
 <div align="center">
@@ -15,7 +13,8 @@ TSegmentedView
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](https://img.shields.io/badge/Cocoapods-compatible-brightgreen.svg?style=flat)](http://cocoapods.org/)&nbsp;
 [![Build Status](https://travis-ci.org/tobedefined/TSegmentedView.svg?branch=master)](https://travis-ci.org/tobedefined/TSegmentedView)&nbsp;
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/tobedefined/TSegmentedView/blob/master/LICENSE)
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/tobedefined/TSegmentedView/blob/master/LICENSE)&nbsp;
+[![Join the chat at https://gitter.im/TSegmentedView/Lobby](https://badges.gitter.im/TSegmentedView/Lobby.svg)](https://gitter.im/TSegmentedView/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 </div>
 
