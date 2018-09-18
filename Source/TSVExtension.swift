@@ -8,6 +8,12 @@
 
 import UIKit
 
+#if swift(>=4.2)
+typealias TSVLayoutConstraintAttribute = NSLayoutConstraint.Attribute
+#else
+typealias TSVLayoutConstraintAttribute = NSLayoutAttribute
+#endif
+
 extension UIColor {
     convenience init(tsvR: Int, tsvG: Int, tsvB: Int, tsvA: Float = 1.0) {
         self.init(red:   CGFloat(Float(tsvR) / 255.0),
@@ -45,7 +51,7 @@ extension UIImage {
 
 extension UIView {
     @discardableResult
-    func tsv_makeConstraint(_ attribute: NSLayoutAttribute,
+    func tsv_makeConstraint(_ attribute: TSVLayoutConstraintAttribute,
                             is number: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
@@ -60,7 +66,7 @@ extension UIView {
     }
     
     @discardableResult
-    func tsv_makeConstraint(_ attribute: NSLayoutAttribute,
+    func tsv_makeConstraint(_ attribute: TSVLayoutConstraintAttribute,
                             equalTo view: UIView,
                             multiplier: CGFloat = 1.0,
                             constant: CGFloat = 0.0) -> NSLayoutConstraint {
@@ -87,9 +93,9 @@ extension UIView {
     }
     
     @discardableResult
-    func tsv_makeConstraint(_ attr: NSLayoutAttribute,
+    func tsv_makeConstraint(_ attr: TSVLayoutConstraintAttribute,
                             equalTo view: UIView,
-                            attribute: NSLayoutAttribute,
+                            attribute: TSVLayoutConstraintAttribute,
                             multiplier: CGFloat = 1.0,
                             constant: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +111,7 @@ extension UIView {
     }
     
     @discardableResult
-    func tsv_makeConstraints(_ attributes: [NSLayoutAttribute],
+    func tsv_makeConstraints(_ attributes: [TSVLayoutConstraintAttribute],
                              equalTo view: UIView,
                              multiplier: CGFloat = 1.0,
                              constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
