@@ -50,9 +50,9 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attribute,
-                                                 relatedBy: NSLayoutRelation.equal,
+                                                 relatedBy: .equal,
                                                  toItem: nil,
-                                                 attribute: NSLayoutAttribute.notAnAttribute,
+                                                 attribute: .notAnAttribute,
                                                  multiplier: 1.0,
                                                  constant: number)
         self.addConstraint(constraint)
@@ -67,7 +67,7 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attribute,
-                                                 relatedBy: NSLayoutRelation.equal,
+                                                 relatedBy: .equal,
                                                  toItem: view,
                                                  attribute: attribute,
                                                  multiplier: multiplier,
@@ -95,7 +95,7 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint.init(item: self,
                                                  attribute: attr,
-                                                 relatedBy: NSLayoutRelation.equal,
+                                                 relatedBy: .equal,
                                                  toItem: view,
                                                  attribute: attribute,
                                                  multiplier: multiplier,
