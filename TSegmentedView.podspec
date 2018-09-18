@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.source_files          = "Source/*.swift"
   s.exclude_files         = "Classes/Exclude"
   s.frameworks            = "Foundation", "UIKit"
+  s.swift_version         = '4.0'
 end
