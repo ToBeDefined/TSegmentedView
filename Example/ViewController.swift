@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         self.view.addSubview(sview)
         sview.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(64)
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
         sview.delegate = self
         sview.reloadData()
