@@ -9,21 +9,21 @@
 import UIKit
 
 extension UIColor {
-    convenience init(TSVR: Int, TSVG: Int, TSVB: Int, TSVA: Float = 1.0) {
-        self.init(red:   CGFloat(Float(TSVR) / 255.0),
-                  green: CGFloat(Float(TSVG) / 255.0),
-                  blue:  CGFloat(Float(TSVB) / 255.0),
-                  alpha: CGFloat(TSVA))
+    convenience init(tsvR: Int, tsvG: Int, tsvB: Int, tsvA: Float = 1.0) {
+        self.init(red:   CGFloat(Float(tsvR) / 255.0),
+                  green: CGFloat(Float(tsvG) / 255.0),
+                  blue:  CGFloat(Float(tsvB) / 255.0),
+                  alpha: CGFloat(tsvA))
     }
     
     convenience init(withTSVRGBValue rgbValue: Int, alpha: Float = 1.0) {
         let r = ((rgbValue & 0xFF0000) >> 16)
         let g = ((rgbValue & 0x00FF00) >> 8)
         let b =  (rgbValue & 0x0000FF)
-        self.init(TSVR: r,
-                  TSVG: g,
-                  TSVB: b,
-                  TSVA: alpha)
+        self.init(tsvR: r,
+                  tsvG: g,
+                  tsvB: b,
+                  tsvA: alpha)
     }
 }
 
