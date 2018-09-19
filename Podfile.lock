@@ -1,22 +1,16 @@
 PODS:
-  - SnapKit (4.0.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
-  - SnapKit (from `https://github.com/SnapKit/SnapKit`, commit `15beb52`)
+  - SnapKit (~> 4.0.1)
 
-EXTERNAL SOURCES:
-  SnapKit:
-    :commit: 15beb52
-    :git: https://github.com/SnapKit/SnapKit
-
-CHECKOUT OPTIONS:
-  SnapKit:
-    :commit: 15beb52
-    :git: https://github.com/SnapKit/SnapKit
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
 
 SPEC CHECKSUMS:
-  SnapKit: 4b1c20a79bc7655f2bdefba4f008630681f63fe5
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 9ac51e281a3b76c5a996b5f331f5ec757a2e2265
+PODFILE CHECKSUM: 3fe0e0c1887e0e45464db77e310a4901ed7dd467
 
 COCOAPODS: 1.5.3
