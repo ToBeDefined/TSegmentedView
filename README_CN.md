@@ -33,7 +33,7 @@ TSegmentedView
 
 ### 特点
 
-- 完美兼容`Objective-C`和`Swift(3/3.1/3.2/4)`
+- 完美兼容`Objective-C`和`Swift(3/4/5)`
 - 支持用户滑动和点击tab
 - 支持滑动返回(在任意的tab)
 - 支持`Frame`和`Autolayout`自动布局，你可以使用`Masonry`/`SnapKit`/`NSLayoutConstraint`去布局view

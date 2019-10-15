@@ -33,7 +33,7 @@ TSegmentedView
 
 ### Features
 
-- perfectly compatible with `Objective-C` and `Swift(3/3.1/3.2/4)`
+- perfectly compatible with `Objective-C` and `Swift(3/4/5)`
 - support user scorll and click tab
 - support slide back(in any tab)
 - support `Frame` and `Autolayout`, you can use `Masonry`/`SnapKit`/`NSLayoutConstraint` layout views
