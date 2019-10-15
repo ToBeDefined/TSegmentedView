@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "TSegmentedView"
-  s.version               = "1.1.2"
+  s.version               = "1.1.3"
   s.summary               = "You can use TSegmentedView create scroll page views"
   s.description           = "You can use TSegmentedView create scroll page views, homepage is https://github.com/tobedefined/TSegmentedView"
   s.homepage              = "https://github.com/tobedefined/TSegmentedView"
