@@ -56,7 +56,7 @@ public class TSegmentedControlView: UIView {
         }
     }
     
-    private var controls = [PAControl]()
+    private var controls = [TSControl]()
     private var topLine: UIImageView!
     private var bottomLine: UIImageView!
     
@@ -95,7 +95,7 @@ public class TSegmentedControlView: UIView {
         
         let count = CGFloat(titles.count)
         for index in 0..<titles.count {
-            let control = PAControl()
+            let control = TSControl()
             control.addTarget(self, action: #selector(self.clickControl(_:)), for: .touchUpInside)
             control.label.text = titles[index]
             control.normalColor = self.normalColor
@@ -142,7 +142,7 @@ public class TSegmentedControlView: UIView {
         }
     }
     
-    @objc private func clickControl(_ control: PAControl) {
+    @objc private func clickControl(_ control: TSControl) {
         let index = self.controls.index(of: control) ?? 0
         _currentIndex = index
         self.actionBlock?(index)
@@ -165,7 +165,7 @@ extension TSegmentedControlView: TSegmentedControlProtocol {
 }
 
 
-class PAControl: UIControl {
+class TSControl: UIControl {
     
     override var isSelected: Bool {
         didSet {
