@@ -43,6 +43,9 @@ import UIKit
 public class TSegmentedView: UIView {
     public weak var delegate: TSegmentedViewDelegate?
     
+    
+    public var isHeaderScrollEnable: Bool = true
+    
     public var currentIndex: Int {
         get {
             return _currentIndex
@@ -57,7 +60,6 @@ public class TSegmentedView: UIView {
             self.updateHeaderViewConstraints()
         }
     }
-    
     // page current/count
     fileprivate var _currentIndex: Int = -1
     
@@ -402,24 +404,26 @@ extension TSegmentedView: UIScrollViewDelegate {
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == self.scrollView {
-            if !self.isUserScroll {
-                return
-            }
-            let index = Int((self.frame.width * 0.5 + scrollView.contentOffset.x) / self.frame.width)
-            if index == _currentIndex {
-                return
-            }
-            self.removeObserver(from: self.viewArray[_currentIndex])
-            self.addObserver(to: self.viewArray[index])
-            _currentIndex = index
-            self.delegate?.segmentedView?(self, didShow: index)
-            #if swift(>=3.2)
-                self.segmentedControlView?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
-            #else
-                self.segmentedControlView_P?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
-            #endif
+        if scrollView != self.scrollView {
+            return
         }
+        if !self.isUserScroll {
+            return
+        }
+        let index = Int((self.frame.width * 0.5 + scrollView.contentOffset.x) / self.frame.width)
+        if index == _currentIndex {
+            return
+        }
+        self.removeObserver(from: self.viewArray[_currentIndex])
+        self.addObserver(to: self.viewArray[index])
+        _currentIndex = index
+        self.delegate?.segmentedView?(self, didShow: index)
+        #if swift(>=3.2)
+        self.segmentedControlView?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
+        #else
+        self.segmentedControlView_P?.userScrollExtent(scrollView.contentOffset.x/self.frame.width)
+        #endif
+        setupPanGesture(index: index)
     }
     
     public func scrollView(scrollTo index: Int, animated: Bool = true) {
@@ -431,6 +435,20 @@ extension TSegmentedView: UIScrollViewDelegate {
         let contentOffset = CGPoint.init(x: x, y: 0)
         self.scrollView.setContentOffset(contentOffset, animated: animated)
         self.delegate?.segmentedView?(self, didShow: index)
+        setupPanGesture(index: index)
+    }
+    
+    fileprivate func setupPanGesture(index: Int) {
+        if !isHeaderScrollEnable { return }
+        let currentView = self.viewArray[index]
+        if let gestureRecognizers = self.gestureRecognizers {
+            for gesture in gestureRecognizers {
+                if gesture is UIPanGestureRecognizer {
+                    self.removeGestureRecognizer(gesture)
+                }
+            }
+        }
+        self.addGestureRecognizer(currentView.panGestureRecognizer)
     }
 }
 
