@@ -143,7 +143,11 @@ public class TSegmentedControlView: UIView {
     }
     
     @objc private func clickControl(_ control: TSControl) {
+        #if swift(>=5.0)
+        let index = self.controls.firstIndex(of: control) ?? 0
+        #else
         let index = self.controls.index(of: control) ?? 0
+        #endif
         _currentIndex = index
         self.actionBlock?(index)
     }
